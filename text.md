@@ -6,7 +6,7 @@ Step 1 Your info Step 2 Select plan Step 3 Add-ons Step 4 Summary
 
 <!-- Step 1 start -->
 
-Personal info Please provide your name, email address, and phone number. Name
+Personal info Name
 e.g. Stephen King Email Address e.g. stephenking@lorem.com Phone Number e.g. +1
 234 567 890 Next Step
 
