@@ -20,10 +20,17 @@ const Step: React.FC<StepProps> = ({ title, step, current }) => {
       <div
         className={cn(
           current ? "bg-light-blue" : "border-2 ",
-          "rounded-full flex items-center justify-center w-10 h-10"
+          "rounded-full flex items-center justify-center w-8 h-8 md:w-10 md:h-10"
         )}
       >
-        <p className={cn(current ? "text-blue" : "text-white")}>{step}</p>
+        <p
+          className={cn(
+            current ? "text-blue" : "text-white",
+            "text-xs font-bold"
+          )}
+        >
+          {step}
+        </p>
       </div>
       <div className="hidden md:flex flex-col gap-1">
         <h2 className=" uppercase text-cool-gray text-md">Step {step}</h2>

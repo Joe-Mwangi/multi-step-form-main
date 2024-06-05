@@ -15,7 +15,9 @@ const Card: React.FC<CardProps> = ({ title, price, icon, yearly }) => {
         className={`w-10 md:w-12 md:h-12 h-10 bg-[url('/images/${icon}')] bg-center bg-cover bg-no-repeat`}
       ></div>
       <div className="flex flex-col items-start gap-2">
-        <h2 className="font-bold text-md text-marine-blue">{title}</h2>
+        <h2 className="font-bold text-sm md:text-md text-marine-blue">
+          {title}
+        </h2>
         <p className="font-medium text-sm text-cool-gray">${price}/mo </p>
         {yearly && (
           <p className="font-bold text-xs text-marine-blue">2 months free</p>
