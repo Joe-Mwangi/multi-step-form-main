@@ -14,7 +14,7 @@ export default StepsButton;
 
 export const SwitchBtn = () => {
   return (
-    <div className="flex items-center gap-4 justify-center p-3 bg-light-gray rounded-lg ">
+    <div className="flex md:mt-4 items-center gap-4 justify-center p-3 bg-light-gray rounded-lg ">
       <p className="font-bold text-sm md:text-md text-marine-blue">Monthly</p>
 
       <div className="flex cursor-pointer justify-start w-12 rounded-2xl p-1 bg-marine-blue">
