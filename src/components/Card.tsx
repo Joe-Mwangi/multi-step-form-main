@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { cn } from "../lib/utils";
+import { Card2Props, CardProps } from "../types";
 
 const PlanCards = () => {
   return (
@@ -92,17 +93,3 @@ const Card2: React.FC<Card2Props> = ({
 };
 
 export default PlanCards;
-
-type CardProps = {
-  title: string;
-  price: string;
-  icon: string;
-  yearly?: boolean;
-};
-
-type Card2Props = {
-  title: string;
-  description: string;
-  plustext: string;
-  yearly?: boolean;
-};
