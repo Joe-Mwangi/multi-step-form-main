@@ -19,7 +19,7 @@ const formSchema = z.object({
   phoneNo: z.string().min(1, message),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+export type FormValues = z.infer<typeof formSchema>;
 
 const FormCard = () => {
   const form = useForm<FormValues>({
@@ -27,6 +27,7 @@ const FormCard = () => {
     defaultValues: {
       email: "",
       phoneNo: "",
+      name: "",
     },
   });
 
