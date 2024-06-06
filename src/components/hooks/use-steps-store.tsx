@@ -24,8 +24,10 @@ export const useStepsStore = create<StepsStore>((set) => ({
   yearly: false,
   plan: { title: "", price: "" },
   addOns: { title: "", price: "" },
-  incrementStep: () => set((state) => ({ step: state.step + 1 })),
-  decrementStep: () => set((state) => ({ step: state.step - 1 })),
+  incrementStep: () =>
+    set((state) => ({ step: state.step > 4 ? 4 : state.step + 1 })),
+  decrementStep: () =>
+    set((state) => ({ step: state.step < 1 ? 1 : state.step - 1 })),
   updatePlan: (plan) => set({ plan }),
   updateAddOns: (addOns) => set({ addOns }),
   updateYearly: () => set((state) => ({ yearly: !state.yearly })),

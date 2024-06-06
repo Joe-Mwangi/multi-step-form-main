@@ -64,7 +64,7 @@ const Card2: React.FC<Card2Props> = ({
   const [selected, setSelected] = useState(false);
 
   return (
-    <button
+    <div
       className={cn(
         selected && "bg-magnolia border-purplish-blue",
         "rounded-lg hover:border-purplish-blue border  text-card-foreground shadow-sm flex p-4 justify-between md:gap-16 items-center w-full"
@@ -88,7 +88,7 @@ const Card2: React.FC<Card2Props> = ({
       ) : (
         <p className="font-bold text-sm text-purplish-blue">+${plustext}/mo</p>
       )}
-    </button>
+    </div>
   );
 };
 
