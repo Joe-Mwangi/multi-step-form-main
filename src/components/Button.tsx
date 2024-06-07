@@ -3,8 +3,9 @@ import { useStepsStore } from "./hooks/use-steps-store";
 import { Button } from "./ui/button";
 
 const StepsButton = () => {
-  const { step, incrementStep, decrementStep } = useStepsStore();
-  console.log("step: ", step);
+  const { step, incrementStep, decrementStep, complete } = useStepsStore();
+  // const completed = complete.find((item) => item.step === step)?.complete;
+
   return (
     <div
       className={cn(
@@ -22,6 +23,7 @@ const StepsButton = () => {
         </Button>
       )}
       <Button
+        // disabled={!completed}
         onClick={() => incrementStep()}
         className={cn(step === 4 && "bg-purplish-blue", "font-bold")}
       >

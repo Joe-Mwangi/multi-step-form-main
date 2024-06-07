@@ -37,8 +37,17 @@ export const AddOnsCard = () => {
 };
 
 const Card: React.FC<CardProps> = ({ title, price, icon, yearly }) => {
+  const [selected, setSelected] = useState(false);
+
   return (
-    <button className="rounded-lg hover:border-purplish-blue focus:bg-magnolia focus:border-purplish-blue border bg-card text-card-foreground shadow-sm flex p-4 md:flex-col gap-4 md:gap-16 items-center md:items-start w-full">
+    <button
+      onClick={() => setSelected(!selected)}
+      className={cn(
+        selected && "bg-magnolia border-purplish-blue",
+
+        "rounded-lg hover:border-purplish-blue border  text-card-foreground shadow-sm flex p-4 md:flex-col gap-4 md:gap-16 items-center md:items-start w-full"
+      )}
+    >
       <div
         className={`w-10 md:w-12 md:h-12 h-10 bg-[url('/images/${icon}')] bg-center bg-cover bg-no-repeat`}
       ></div>

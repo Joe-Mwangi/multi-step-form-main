@@ -10,6 +10,7 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useStepsStore } from "./hooks/use-steps-store";
 
 const message = "This Field is Required";
 
@@ -31,9 +32,17 @@ const FormCard = () => {
     },
   });
 
+  const { updateFormValues, updateComplete } = useStepsStore();
+
   const onSubmit = async (data: FormValues) => {
+    updateFormValues(data);
+    updateComplete({ step: 1, complete: true });
     console.log(data);
   };
+  // console.log(form.getValues());
+  // const handleOnChange = (data: {name: string, value: string}) => {
+
+  // }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
@@ -43,17 +52,25 @@ const FormCard = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-bold text-marine-blue">
-                  Name
-                </FormLabel>
+                <div className="flex justify-between">
+                  <FormLabel className="font-bold text-marine-blue">
+                    Name
+                  </FormLabel>
+                  <FormMessage />
+                </div>
+
                 <FormControl>
                   <Input
                     className="font-bold text-light-gray"
                     placeholder="eg. Stephen King"
+                    {...form.register("name", {
+                      onChange: (e) => {
+                        console.log("name: ", e.target.value);
+                      },
+                    })}
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
@@ -62,9 +79,12 @@ const FormCard = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-bold text-marine-blue">
-                  Email Address
-                </FormLabel>
+                <div className="flex justify-between">
+                  <FormLabel className="font-bold text-marine-blue">
+                    Email Address
+                  </FormLabel>
+                  <FormMessage />
+                </div>
                 <FormControl>
                   <Input
                     className="font-bold text-light-gray"
@@ -72,7 +92,6 @@ const FormCard = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
@@ -81,9 +100,13 @@ const FormCard = () => {
             name="phoneNo"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-bold text-marine-blue">
-                  Phone Number
-                </FormLabel>
+                <div className="flex justify-between">
+                  <FormLabel className="font-bold text-marine-blue">
+                    Phone Number
+                  </FormLabel>
+                  <FormMessage />
+                </div>
+
                 <FormControl>
                   <Input
                     className="font-bold text-light-gray"
@@ -91,7 +114,6 @@ const FormCard = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
