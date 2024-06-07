@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { FormValues } from "../Form";
+import { ChangeEvent } from "react";
+import { FormValues } from "../../types";
 
 interface StepsStore {
   step: number;
@@ -14,7 +15,9 @@ interface StepsStore {
   updatePlan: (plan: Plan) => void;
   updateAddOns: (plan: Plan) => void;
   updateComplete: (item: CompleteValues) => void;
-  updateFormValues: (values: FormValues) => void;
+  updateFormValues: (
+    input: string
+  ) => (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface Plan {
@@ -46,5 +49,8 @@ export const useStepsStore = create<StepsStore>((set) => ({
   updateYearly: () => set((state) => ({ yearly: !state.yearly })),
   updateComplete: (item) =>
     set((state) => ({ complete: [...state.complete, item] })),
-  updateFormValues: (values) => set({ formValues: values }),
+  updateFormValues: (input) => (e) => {
+    const { value } = e.target;
+    set((state) => ({ formValues: { ...state.formValues, [input]: value } }));
+  },
 }));

@@ -3,8 +3,7 @@ import { useStepsStore } from "./hooks/use-steps-store";
 import { Button } from "./ui/button";
 
 const StepsButton = () => {
-  const { step, incrementStep, decrementStep, complete } = useStepsStore();
-  // const completed = complete.find((item) => item.step === step)?.complete;
+  const { step, incrementStep, decrementStep } = useStepsStore();
 
   return (
     <div

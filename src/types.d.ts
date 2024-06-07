@@ -11,3 +11,9 @@ export type Card2Props = {
   plustext: string;
   yearly?: boolean;
 };
+
+export interface FormValues {
+  email: string;
+  name: string;
+  phoneNo: string;
+}
