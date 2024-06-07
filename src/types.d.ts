@@ -16,4 +16,6 @@ export interface FormValues {
   email: string;
   name: string;
   phoneNo: string;
+  plan: string;
+  addOns: string;
 }

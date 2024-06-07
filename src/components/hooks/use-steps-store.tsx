@@ -41,7 +41,7 @@ export const useStepsStore = create<StepsStore>((set) => ({
   yearly: false,
   plan: { title: "", price: "" },
   addOns: { title: "", price: "" },
-  formValues: { email: "", phoneNo: "", name: "" },
+  formValues: { email: "", phoneNo: "", name: "", plan: "", addOns: "" },
   incrementStep: () => set((state) => ({ step: state.step + 1 })),
   decrementStep: () => set((state) => ({ step: state.step - 1 })),
   updatePlan: (plan) => set({ plan }),

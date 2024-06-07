@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { cn } from "../lib/utils";
 import { Card2Props, CardProps } from "../types";
+import { useStepsStore } from "./hooks/use-steps-store";
 
 const PlanCards = () => {
   return (
@@ -38,10 +39,17 @@ export const AddOnsCard = () => {
 
 const Card: React.FC<CardProps> = ({ title, price, icon, yearly }) => {
   const [selected, setSelected] = useState(false);
+  const { updateFormValues } = useStepsStore();
 
+  function handleClick() {
+    setSelected(!selected);
+    updateFormValues("plan");
+  }
   return (
     <button
-      onClick={() => setSelected(!selected)}
+      type="button"
+      value={`${title}:${price}`}
+      onClick={handleClick}
       className={cn(
         selected && "bg-magnolia border-purplish-blue",
 
@@ -71,14 +79,20 @@ const Card2: React.FC<Card2Props> = ({
   yearly,
 }) => {
   const [selected, setSelected] = useState(false);
+  const { updateFormValues } = useStepsStore();
 
+  function handleClick() {
+    setSelected(!selected);
+    updateFormValues("addOns");
+  }
   return (
-    <div
+    <button
       className={cn(
         selected && "bg-magnolia border-purplish-blue",
         "rounded-lg hover:border-purplish-blue border  text-card-foreground shadow-sm flex p-4 justify-between md:gap-16 items-center w-full"
       )}
-      onClick={() => setSelected(!selected)}
+      onClick={handleClick}
+      value={`${title}:${plustext}`}
     >
       <div className="flex items-center gap-8">
         <Checkbox
@@ -97,7 +111,7 @@ const Card2: React.FC<Card2Props> = ({
       ) : (
         <p className="font-bold text-sm text-purplish-blue">+${plustext}/mo</p>
       )}
-    </div>
+    </button>
   );
 };
 
