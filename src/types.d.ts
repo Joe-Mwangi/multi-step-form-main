@@ -1,7 +1,7 @@
 export type CardProps = {
   title: string;
   price: string;
-  icon: string;
+  icon: Reaact.ReactElement;
   yearly?: boolean;
 };
 

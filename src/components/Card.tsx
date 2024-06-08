@@ -3,18 +3,19 @@ import { Checkbox } from "./ui/checkbox";
 import { cn } from "../lib/utils";
 import { Card2Props, CardProps } from "../types";
 import { useStepsStore } from "../hooks/use-steps-store";
+import { AdvancedIcon, ArcadeIcon, ProIcon } from "./icons";
 
 const PlanCards = () => {
   const { yearly } = useStepsStore();
   return (
     <div className="flex flex-col md:flex-row md:justify-between gap-4 md:mt-4 w-full">
-      <Card title="Arcade" price={yearly ? "90" : "9"} icon="icon-arcade.svg" />
+      <Card title="Arcade" price={yearly ? "90" : "9"} icon={<ArcadeIcon />} />
       <Card
         title="Advanced"
         price={yearly ? "120" : "12"}
-        icon="icon-advanced.svg"
+        icon={<AdvancedIcon />}
       />
-      <Card title="Pro" price={yearly ? "150" : "15"} icon="icon-pro.svg" />
+      <Card title="Pro" price={yearly ? "150" : "15"} icon={<ProIcon />} />
     </div>
   );
 };
@@ -62,9 +63,7 @@ const Card: React.FC<CardProps> = ({ title, price, icon }) => {
         "rounded-lg hover:border-purplish-blue border  text-card-foreground shadow-sm flex p-3 md:p-4 md:flex-col gap-4 md:gap-16 items-center md:items-start w-full"
       )}
     >
-      <div
-        className={`w-10 md:w-12 md:h-12 h-10 bg-[url('/images/${icon}')] bg-center bg-cover bg-no-repeat`}
-      ></div>
+      {icon}
       <div className="flex flex-col items-start gap-1 md:gap-2">
         <h2 className="font-bold text-sm md:text-md text-marine-blue">
           {title}
