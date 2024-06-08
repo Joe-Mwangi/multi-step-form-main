@@ -5,7 +5,7 @@ import Step3 from "./steps/Step3";
 import Step4 from "./steps/Step4";
 
 import FinalStep from "./steps/Final";
-import { useStepsStore } from "./hooks/use-steps-store";
+import { useStepsStore } from "../hooks/use-steps-store";
 
 const MainContainer = () => {
   const { step } = useStepsStore();

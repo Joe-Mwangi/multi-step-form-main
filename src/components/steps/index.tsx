@@ -1,5 +1,5 @@
 import { cn } from "../../lib/utils";
-import { useStepsStore } from "../hooks/use-steps-store";
+import { useStepsStore } from "../../hooks/use-steps-store";
 
 const StepsContainer = () => {
   return (

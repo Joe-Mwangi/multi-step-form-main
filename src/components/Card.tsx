@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { cn } from "../lib/utils";
 import { Card2Props, CardProps } from "../types";
-import { useStepsStore } from "./hooks/use-steps-store";
+import { useStepsStore } from "../hooks/use-steps-store";
 
 const PlanCards = () => {
   const { yearly } = useStepsStore();
