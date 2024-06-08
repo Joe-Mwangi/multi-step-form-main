@@ -94,9 +94,7 @@ export function calculateTotalPrice(
       return acc + current.monthly;
     }, 0);
 
-  const plan = yearly
-    ? plans.find((item) => item.selected)
-    : plans.find((item) => item.selected);
+  const plan = plans.find((item) => item.selected);
 
   const t2 = (yearly ? plan?.yearly : plan?.monthly) || 0;
   return { totalPrice: t1 + t2, plan };

@@ -9,6 +9,7 @@ interface StepsStore {
   plans: Plan[];
   addOns: AddOns[];
   formValues: FormValues;
+  updateStep: (step: number) => void;
   incrementStep: () => void;
   decrementStep: () => void;
   updateYearly: () => void;
@@ -25,6 +26,7 @@ export const useStepsStore = create<StepsStore>((set) => ({
   plans,
   addOns,
   formValues,
+  updateStep: (step) => set({ step }),
   incrementStep: () => set((state) => ({ step: state.step + 1 })),
   decrementStep: () => set((state) => ({ step: state.step - 1 })),
   updatePlan: (plan) =>

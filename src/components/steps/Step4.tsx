@@ -16,7 +16,7 @@ const Step4 = () => {
 };
 
 const Card = () => {
-  const { yearly, plans, addOns } = useStepsStore();
+  const { yearly, plans, addOns, updateStep } = useStepsStore();
   const { totalPrice, plan } = calculateTotalPrice(addOns, plans, yearly);
   return (
     <div className="flex flex-col gap-4 w-full justify-start">
@@ -26,7 +26,10 @@ const Card = () => {
             <h2 className="font-bold text-md text-marine-blue">
               {plan?.title} {yearly ? "(Yearly)" : "(Monthly)"}
             </h2>
-            <p className="font-medium text-sm text-cool-gray underline">
+            <p
+              onClick={() => updateStep(2)}
+              className="font-medium text-sm text-cool-gray cursor-pointer underline"
+            >
               Change
             </p>
           </div>
