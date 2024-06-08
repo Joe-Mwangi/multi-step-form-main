@@ -1,29 +1,25 @@
 import { create } from "zustand";
 import { ChangeEvent } from "react";
-import { FormValues } from "../../types";
+import { AddOns, FormValues, Plan } from "../types";
+import { addOns, filterAddOns, filterPlans, plans } from "../data";
 
 interface StepsStore {
   step: number;
   complete: CompleteValues[];
   yearly: boolean;
-  plan: Plan;
-  addOns: Plan[];
+  plans: Plan[];
+  addOns: AddOns[];
   formValues: FormValues;
   incrementStep: () => void;
   decrementStep: () => void;
   updateYearly: () => void;
-  updatePlan: (plan: Plan) => void;
-  updateAddOns: (plan: Plan) => void;
+  updatePlan: (plan: { title: string; selected: boolean }) => void;
+  updateAddOns: (plan: { title: string; selected: boolean }) => void;
   updateComplete: (item: CompleteValues) => void;
   updateFormValues: (
     input: string
   ) => (e: ChangeEvent<HTMLInputElement>) => void;
   updateFormValues2: (input: string, value: string | string[]) => void;
-}
-
-interface Plan {
-  title: string;
-  price: string;
 }
 
 interface CompleteValues {
@@ -40,8 +36,8 @@ export const useStepsStore = create<StepsStore>((set) => ({
     { step: 4, complete: false },
   ],
   yearly: false,
-  plan: { title: "", price: "" },
-  addOns: [],
+  plans: plans,
+  addOns: addOns,
   formValues: {
     email: "",
     phoneNo: "",
@@ -49,10 +45,11 @@ export const useStepsStore = create<StepsStore>((set) => ({
   },
   incrementStep: () => set((state) => ({ step: state.step + 1 })),
   decrementStep: () => set((state) => ({ step: state.step - 1 })),
-  updatePlan: (plan) => set({ plan }),
-  updateAddOns: (addOns) =>
+  updatePlan: (plan) =>
+    set((state) => ({ plans: filterPlans(plan, state.plans) })),
+  updateAddOns: (addOn) =>
     set((state) => ({
-      addOns: [...state.addOns, addOns],
+      addOns: filterAddOns(addOn, state.addOns),
     })),
   updateYearly: () => set((state) => ({ yearly: !state.yearly })),
   updateComplete: (item) =>

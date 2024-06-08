@@ -1,19 +1,29 @@
 export type CardProps = {
-  title: string;
-  price: string;
-  icon: Reaact.ReactElement;
-  yearly?: boolean;
+  data: Plan;
 };
 
 export type Card2Props = {
-  title: string;
-  description: string;
-  amount: string;
-  yearly?: boolean;
+  data: AddOns;
 };
 
 export interface FormValues {
   email: string;
   name: string;
   phoneNo: string;
+}
+
+export interface Plan {
+  title: string;
+  yearly: number;
+  monthly: number;
+  icon: JSX.Element;
+  selected: boolean;
+}
+
+export interface AddOns {
+  title: string;
+  description: string;
+  yearly: number;
+  monthly: number;
+  selected: boolean;
 }

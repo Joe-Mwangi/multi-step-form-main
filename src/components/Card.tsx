@@ -3,55 +3,36 @@ import { Checkbox } from "./ui/checkbox";
 import { cn } from "../lib/utils";
 import { Card2Props, CardProps } from "../types";
 import { useStepsStore } from "../hooks/use-steps-store";
-import { AdvancedIcon, ArcadeIcon, ProIcon } from "./icons";
 
 const PlanCards = () => {
-  const { yearly } = useStepsStore();
+  const { plans } = useStepsStore();
   return (
     <div className="flex flex-col md:flex-row md:justify-between gap-4 md:mt-4 w-full">
-      <Card title="Arcade" price={yearly ? "90" : "9"} icon={<ArcadeIcon />} />
-      <Card
-        title="Advanced"
-        price={yearly ? "120" : "12"}
-        icon={<AdvancedIcon />}
-      />
-      <Card title="Pro" price={yearly ? "150" : "15"} icon={<ProIcon />} />
+      {plans.map((plan) => (
+        <Card key={plan.title} data={plan} />
+      ))}
     </div>
   );
 };
 
 export const AddOnsCard = () => {
-  const { yearly } = useStepsStore();
+  const { addOns } = useStepsStore();
 
   return (
     <div className="flex flex-col gap-4 md:mt-4 w-full">
-      <Card2
-        title="Online service"
-        description="Access to multiplayer games"
-        amount={yearly ? "10" : "1"}
-      />
-
-      <Card2
-        title="Larger storage"
-        description="Extra 1TB of cloud save"
-        amount={yearly ? "20" : "2"}
-      />
-      <Card2
-        title="Customizable profile"
-        description="Custom theme on your profile"
-        amount={yearly ? "20" : "2"}
-      />
+      {addOns.map((addOn) => (
+        <Card2 key={addOn.title} data={addOn} />
+      ))}
     </div>
   );
 };
 
-const Card: React.FC<CardProps> = ({ title, price, icon }) => {
-  const [selected, setSelected] = useState(false);
+const Card: React.FC<CardProps> = ({ data }) => {
+  const { icon, title, monthly, yearly: yrPrice, selected } = data;
   const { updatePlan, yearly } = useStepsStore();
 
   function handleClick() {
-    setSelected(!selected);
-    updatePlan({ title, price });
+    updatePlan({ title, selected: !selected });
   }
   return (
     <button
@@ -69,7 +50,7 @@ const Card: React.FC<CardProps> = ({ title, price, icon }) => {
           {title}
         </h2>
         <p className="font-medium text-xs md:text-sm text-cool-gray">
-          ${price}/{yearly ? "yr" : "mo"}
+          {yearly ? `$${yrPrice}/yr` : `$${monthly}/mo`}
         </p>
         {yearly && (
           <p className="font-bold text-xs text-marine-blue">2 months free</p>
@@ -79,12 +60,20 @@ const Card: React.FC<CardProps> = ({ title, price, icon }) => {
   );
 };
 
-const Card2: React.FC<Card2Props> = ({ title, description, amount }) => {
-  const [selected, setSelected] = useState(false);
+const Card2: React.FC<Card2Props> = ({ data }) => {
+  const {
+    description,
+    title,
+    monthly,
+    yearly: yrPrice,
+    selected: checked,
+  } = data;
+
+  const [selected, setSelected] = useState(checked);
   const { updateAddOns, yearly } = useStepsStore();
   function handleClick() {
     setSelected(!selected);
-    updateAddOns({ title, price: amount });
+    updateAddOns({ title, selected: !selected });
   }
   return (
     <div
@@ -112,7 +101,7 @@ const Card2: React.FC<Card2Props> = ({ title, description, amount }) => {
         </div>
       </div>
       <p className="font-bold text-xs md:text-sm text-purplish-blue">
-        +${amount}/{yearly ? "yr" : "mo"}
+        {yearly ? `+$${yrPrice}/yr` : `+$${monthly}/mo`}
       </p>
     </div>
   );
