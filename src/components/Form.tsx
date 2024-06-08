@@ -13,11 +13,13 @@ const FormCard = () => {
       <div className="flex flex-col gap-4">
         <div>
           <div className="flex justify-between">
-            <label className="font-medium mb-2 text-marine-blue">Name</label>
+            <label className="font-medium mb-2 text-sm text-marine-blue">
+              Name
+            </label>
           </div>
 
           <Input
-            className="font-bold text-light-gray"
+            className="font-bold text-marine-blue text-sm"
             placeholder="eg. Stephen King"
             type="text"
             name="name"
@@ -28,7 +30,7 @@ const FormCard = () => {
         <div>
           {" "}
           <div className="flex justify-between">
-            <label className="font-medium mb-2 text-marine-blue">
+            <label className="font-medium mb-2 text-sm text-marine-blue">
               Email Address
             </label>
           </div>
@@ -37,14 +39,14 @@ const FormCard = () => {
             name="email"
             value={email}
             onChange={updateFormValues("email")}
-            className="font-bold text-light-gray"
+            className="font-bold text-marine-blue text-sm"
             placeholder="eg. stephenking@lorem.com"
           />
         </div>
 
         <div>
           <div className="flex justify-between">
-            <label className="font-medium mb-2 text-marine-blue">
+            <label className="font-medium mb-2 text-sm text-marine-blue">
               Phone Number
             </label>
           </div>
@@ -53,7 +55,7 @@ const FormCard = () => {
             type="tel"
             value={phoneNo}
             onChange={updateFormValues("phoneNo")}
-            className="font-bold text-light-gray"
+            className="font-bold text-marine-blue text-sm"
             placeholder="eg. +1 234 567 890"
             name="phoneNo"
           />

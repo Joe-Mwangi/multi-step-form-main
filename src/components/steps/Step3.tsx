@@ -7,7 +7,7 @@ const Step3 = () => {
         <h2 className="font-bold text-xl md:text-2xl text-marine-blue">
           Pick add-ons
         </h2>
-        <p className="font-bold text-sm md:text-md text-cool-gray">
+        <p className="font-medium text-sm md:text-md text-cool-gray">
           Add-ons helps enhance your gaming experience.
         </p>
         <AddOnsCard />

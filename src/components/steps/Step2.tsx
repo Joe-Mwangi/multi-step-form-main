@@ -8,7 +8,7 @@ const Step2 = () => {
         <h2 className="font-bold text-xl md:text-2xl text-marine-blue">
           Select your plan
         </h2>
-        <p className="font-bold text-sm md:text-md text-cool-gray">
+        <p className="font-medium text-sm md:text-md text-cool-gray">
           You have the option of monthly or yearly billing.
         </p>
         <PlanCards />
