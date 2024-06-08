@@ -20,18 +20,18 @@ export const AddOnsCard = () => {
       <Card2
         title="Online service"
         description="Access to multiplayer games"
-        plustext="1"
+        amount="1"
       />
 
       <Card2
         title="Larger storage"
         description="Extra 1TB of cloud save"
-        plustext="2"
+        amount="2"
       />
       <Card2
         title="Customizable profile"
         description="Custom theme on your profile"
-        plustext="2"
+        amount="2"
       />
     </div>
   );
@@ -39,16 +39,15 @@ export const AddOnsCard = () => {
 
 const Card: React.FC<CardProps> = ({ title, price, icon, yearly }) => {
   const [selected, setSelected] = useState(false);
-  const { updateFormValues } = useStepsStore();
+  const { updatePlan } = useStepsStore();
 
   function handleClick() {
     setSelected(!selected);
-    updateFormValues("plan");
+    updatePlan({ title, price });
   }
   return (
     <button
       type="button"
-      value={`${title}:${price}`}
       onClick={handleClick}
       className={cn(
         selected && "bg-magnolia border-purplish-blue",
@@ -75,24 +74,22 @@ const Card: React.FC<CardProps> = ({ title, price, icon, yearly }) => {
 const Card2: React.FC<Card2Props> = ({
   title,
   description,
-  plustext,
+  amount,
   yearly,
 }) => {
   const [selected, setSelected] = useState(false);
-  const { updateFormValues } = useStepsStore();
-
+  const { updateAddOns } = useStepsStore();
   function handleClick() {
     setSelected(!selected);
-    updateFormValues("addOns");
+    updateAddOns({ title, price: amount });
   }
   return (
-    <button
+    <div
       className={cn(
         selected && "bg-magnolia border-purplish-blue",
         "rounded-lg hover:border-purplish-blue border  text-card-foreground shadow-sm flex p-4 justify-between md:gap-16 items-center w-full"
       )}
       onClick={handleClick}
-      value={`${title}:${plustext}`}
     >
       <div className="flex items-center gap-8">
         <Checkbox
@@ -100,6 +97,7 @@ const Card2: React.FC<Card2Props> = ({
           onCheckedChange={(checked) => {
             return checked ? setSelected(true) : setSelected(false);
           }}
+          value={title}
         />
         <div className="flex flex-col items-start ">
           <h2 className="font-bold text-md text-marine-blue">{title}</h2>
@@ -107,11 +105,11 @@ const Card2: React.FC<Card2Props> = ({
         </div>
       </div>
       {yearly ? (
-        <p className="font-bold text-sm text-purplish-blue">+${plustext}0/yr</p>
+        <p className="font-bold text-sm text-purplish-blue">+${amount}0/yr</p>
       ) : (
-        <p className="font-bold text-sm text-purplish-blue">+${plustext}/mo</p>
+        <p className="font-bold text-sm text-purplish-blue">+${amount}/mo</p>
       )}
-    </button>
+    </div>
   );
 };
 

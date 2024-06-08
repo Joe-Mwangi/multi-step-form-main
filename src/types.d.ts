@@ -8,7 +8,7 @@ export type CardProps = {
 export type Card2Props = {
   title: string;
   description: string;
-  plustext: string;
+  amount: string;
   yearly?: boolean;
 };
 
@@ -16,6 +16,4 @@ export interface FormValues {
   email: string;
   name: string;
   phoneNo: string;
-  plan: string;
-  addOns: string;
 }
