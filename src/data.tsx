@@ -1,6 +1,11 @@
 import { AdvancedIcon, ArcadeIcon, ProIcon } from "./components/icons";
 import { AddOns, Plan } from "./types";
 
+export const formValues = {
+  email: "",
+  phoneNo: "",
+  name: "",
+};
 export const plans = [
   {
     title: "Arcade",
