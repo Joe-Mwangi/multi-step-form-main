@@ -7,7 +7,7 @@ interface StepsStore {
   complete: CompleteValues[];
   yearly: boolean;
   plan: Plan;
-  addOns: Plan;
+  addOns: Plan[];
   formValues: FormValues;
   incrementStep: () => void;
   decrementStep: () => void;
@@ -18,6 +18,7 @@ interface StepsStore {
   updateFormValues: (
     input: string
   ) => (e: ChangeEvent<HTMLInputElement>) => void;
+  updateFormValues2: (input: string, value: string | string[]) => void;
 }
 
 interface Plan {
@@ -40,12 +41,19 @@ export const useStepsStore = create<StepsStore>((set) => ({
   ],
   yearly: false,
   plan: { title: "", price: "" },
-  addOns: { title: "", price: "" },
-  formValues: { email: "", phoneNo: "", name: "", plan: "", addOns: "" },
+  addOns: [],
+  formValues: {
+    email: "",
+    phoneNo: "",
+    name: "",
+  },
   incrementStep: () => set((state) => ({ step: state.step + 1 })),
   decrementStep: () => set((state) => ({ step: state.step - 1 })),
   updatePlan: (plan) => set({ plan }),
-  updateAddOns: (addOns) => set({ addOns }),
+  updateAddOns: (addOns) =>
+    set((state) => ({
+      addOns: [...new Set([...state.addOns, addOns])],
+    })),
   updateYearly: () => set((state) => ({ yearly: !state.yearly })),
   updateComplete: (item) =>
     set((state) => ({ complete: [...state.complete, item] })),
@@ -53,4 +61,6 @@ export const useStepsStore = create<StepsStore>((set) => ({
     const { value } = e.target;
     set((state) => ({ formValues: { ...state.formValues, [input]: value } }));
   },
+  updateFormValues2: (input, value) =>
+    set((state) => ({ formValues: { ...state.formValues, [input]: value } })),
 }));
