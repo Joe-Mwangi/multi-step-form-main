@@ -52,7 +52,7 @@ export const useStepsStore = create<StepsStore>((set) => ({
   updatePlan: (plan) => set({ plan }),
   updateAddOns: (addOns) =>
     set((state) => ({
-      addOns: [...new Set([...state.addOns, addOns])],
+      addOns: [...state.addOns, addOns],
     })),
   updateYearly: () => set((state) => ({ yearly: !state.yearly })),
   updateComplete: (item) =>

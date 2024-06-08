@@ -16,7 +16,6 @@ const Step4 = () => {
 
 const Card = () => {
   const { yearly, plan, addOns } = useStepsStore();
-  console.log(addOns);
   const totalPrice =
     addOns.reduce((acc, current) => acc + +current.price, 0) + +plan.price;
   return (
@@ -35,8 +34,8 @@ const Card = () => {
             ${plan.price}/ {yearly ? "yr" : "mo"}
           </h3>
         </div>
-        {addOns.map((item) => (
-          <div className="flex justify-between">
+        {addOns.map((item, i) => (
+          <div key={i} className="flex justify-between">
             <h4 className="font-medium text-md text-cool-gray">{item.title}</h4>
             <p className="font-bold text-sm text-marine-blue ">
               +${item.price}/ {yearly ? "yr" : "mo"}
