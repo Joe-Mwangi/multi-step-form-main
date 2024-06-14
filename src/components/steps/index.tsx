@@ -23,7 +23,7 @@ const Step: React.FC<StepProps> = ({ title, step }) => {
       <div
         className={cn(
           current ? "bg-light-blue" : "border-2 ",
-          "rounded-full flex items-center justify-center w-8 h-8 md:w-10 md:h-10"
+          "rounded-full flex items-center justify-center w-10 h-10 md:w-12 md:h-12"
         )}
       >
         <p
