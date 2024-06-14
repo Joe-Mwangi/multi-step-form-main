@@ -12,7 +12,7 @@ export const plans = [
     yearly: 90,
     monthly: 9,
     icon: <ArcadeIcon />,
-    selected: false,
+    selected: true,
   },
   {
     title: "Advanced",

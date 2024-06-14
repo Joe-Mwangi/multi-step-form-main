@@ -12,15 +12,14 @@ const StepsButton = () => {
         "flex bg-white shadow-lg md:shadow-none p-4 md:p-0  "
       )}
     >
-      {step !== 1 && (
-        <Button
-          onClick={() => decrementStep()}
-          variant="ghost"
-          className="font-bold text-cool-gray"
-        >
-          Go Back
-        </Button>
-      )}
+      <Button
+        onClick={() => decrementStep()}
+        variant="ghost"
+        className="font-bold text-cool-gray"
+      >
+        Go Back
+      </Button>
+
       <Button
         // disabled={!completed}
         onClick={() => incrementStep()}
